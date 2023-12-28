@@ -1,6 +1,6 @@
-# Time-Aut Visual Timer
+# Time-Aut
 
-Visual Timer for Kids
+**Visual Timer (not only) for Kids**
 
 - Currently with T-Rex
 - Easy to modify
