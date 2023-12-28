@@ -11,3 +11,5 @@ Visual Timer for Kids
 - Low stimulus UI
 
 This Timer is heavily inspirated by "Visual Timer" from "Aspie Apps" by "NORRBLICK" (www.aspieapps.com)
+
+![time-aut.png](https://raw.githubusercontent.com/mounta11n/time-aut/main/time-aut.png)
