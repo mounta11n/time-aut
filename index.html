@@ -19,8 +19,10 @@
       <div id="overlay"></div>
     </div>
     <div id="trexContainer"></div>
-    <input class="time-slider" type="range" id="timeSlider" min="1" max="60" value="1">
-    <label for="timeSlider" id="sliderLabel"></label>
+    <div>
+      <input class="time-slider" type="range" id="timeSlider" min="5" max="60" value="5">
+      <label for="timeSlider" id="sliderLabel">5 minutes</label>
+  </div>
   </div>
   <div>
     <button class="button" id="startButton" onclick="startTimer()">&#x23F5</button>
@@ -42,14 +44,12 @@
     const timeSlider = document.getElementById('timeSlider');
     const sliderLabel = document.getElementById('sliderLabel');
     timeSlider.addEventListener('input', function() {
-      sliderLabel.textContent = `${this.value} Minuten`;
+      sliderLabel.textContent = `${this.value} minutes`;
     });
   //
-    const yellowTransition = totalTime * 0.62;
-    const redTransition = totalTime * 0.85;
-      function playPing() {
-        audioPing.play();
-      }
+    function playPing() {
+      audioPing.play();
+    }
   //
     function playMelody() {
       audioMelody.play();
@@ -72,12 +72,25 @@
       document.getElementById(buttonId).style.display = 'none';
     }
   //
+    function updateTrexCount(minutes) {
+      const trexContainer = document.getElementById('trexContainer');
+      trexContainer.innerHTML = ''; //Delete previous T-Rexes
+      for (let i = 0; i < minutes; i++) {
+        const trexImage = document.createElement('img');
+        trexImage.src = 'trex.png';
+        trexImage.alt = 'T-Rex';
+        trexImage.style.width = '30px';
+        trexContainer.appendChild(trexImage);
+      }
+    }
+  //
     function startTimer(durationInSeconds) {
       hideButton('startButton');
       showButton('stopButton');
       hideButton('appTitleFirst');
       hideButton('appTitleSecond');
       hideButton('timeSlider');
+      hideButton('sliderLabel');
       hideButton('footer');
       if (!durationInSeconds) {
         const minutes = validateInput();
@@ -86,6 +99,8 @@
       } else {
         totalTime = durationInSeconds;
       }
+      const yellowTransition = Math.round(totalTime * 0.38);
+      const redTransition = Math.round(totalTime * 0.15);
       clearInterval(countdown);
       const endTime = Date.now() + totalTime * 1000;
       displayTimeLeft(totalTime);
@@ -97,15 +112,15 @@
         playMelody();
         return;
       }
-      const yellowTransition = Math.round(totalTime * 0.62);
-      const redTransition = Math.round(totalTime * 0.85);
+      const yellowTransition = Math.round(totalTime * 0.38);
+      const redTransition = Math.round(totalTime * 0.15);
       if (secondsLeft === yellowTransition) {
         playPing();
-        document.body.style.animation = 'blinkYellow 1s';
+        // document.body.style.animation = 'blinkYellow 1s';
       }
       if (secondsLeft === redTransition) {
         playPing();
-        document.body.style.animation = 'blinkRed 1s';
+        // document.body.style.animation = 'blinkRed 1s';
       }
       displayTimeLeft(secondsLeft);
       updateTrexCount(Math.floor(secondsLeft / 60));
@@ -125,6 +140,7 @@
       showButton('appTitleFirst');
       showButton('appTitleSecond');
       showButton('timeSlider');
+      showButton('sliderLabel');
       showButton('footer');
     }
   //
@@ -140,29 +156,6 @@
       if (timerTitle) {
         timerTitle.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
       }
-    }
-  //
-    function updateTrexCount(minutes) {
-      const trexContainer = document.getElementById('trexContainer');
-      trexContainer.innerHTML = ''; //Delete previous T-Rexes
-      for (let i = -1; i < minutes; i++) {
-        const trexImage = document.createElement('img');
-        trexImage.src = 'trex.png';
-        trexImage.alt = 'T-Rex';
-        trexImage.style.width = '30px';
-        trexContainer.appendChild(trexImage);
-      }
-    }
-  //
-    if (secondsLeft === yellowTransition) {
-      playPing();
-      document.body.classList.add('blinkYellow');
-      setTimeout(() => document.body.classList.remove('blinkYellow'), 1000);
-    }
-    if (secondsLeft === redTransition) {
-      playPing();
-      document.body.classList.add('blinkRed');
-      setTimeout(() => document.body.classList.remove('blinkRed'), 1000);
     }
   //
   </script>
