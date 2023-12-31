@@ -26,7 +26,7 @@
   --selection-color:  hsl(90, 100%, 75%);
   --border-color:       var(--dark-gray-color);
 
-  --one-distance: 100vw;
+  --one-distance: 600px;
   --phi-distance-a: calc(var(--one-distance)   / var(--phi));
   --phi-distance-b: calc(var(--phi-distance-a) / var(--phi));
   --phi-distance-c: calc(var(--phi-distance-b) / var(--phi));
@@ -79,6 +79,14 @@ body {
   color:        var(--bright-color);
   width:        var(--phi-distance-a); /* Body should take full width */
 }
+
+/* body.blinkYellow {
+  animation: blinkYellow 1s;
+}
+
+body.blinkRed {
+  animation: blinkRed 1s;
+} */
 
 ::selection {
   color: #333;
@@ -145,6 +153,22 @@ h2 {
   text-decoration:  none;
   outline:          none;
   color:            var(--button-color);
+  background-color: var(--time-input-color);
+  box-shadow:       0 8px var( --button-shadow-color);
+  border:           none;
+  border-radius:    15px;
+}
+
+.button-stop {
+  display:          none;
+  padding:          var(--phi-distance-i) var(--phi-distance-f);;
+  margin:           var(--phi-distance-j);
+  font-size:        24px;
+  cursor:           pointer;
+  text-align:       center;
+  text-decoration:  none;
+  outline:          none;
+  color:            var(--button-color);
   background-color: var( --button-background-color);
   box-shadow:       0 8px var( --button-shadow-color);
   border:           none;
@@ -162,10 +186,21 @@ h2 {
   transform:        translateY(4px);
 }
 
-.time-input {
+.button-stop:hover {
+  background-color: var(--button-background-color-hover);
+}
+
+.button-stop:active {
+  color:          black;
+  background-color: var(--button-background-color-active);
+  box-shadow:       0 5px var(--button-shadow-color-active);
+  transform:        translateY(4px);
+}
+
+.time-slider {
   display: inline-block;
-  padding: var(--phi-distance-i) var(--phi-distance-f);;
-  margin : var(--phi-distance-j);
+  width: var(--phi-distance-b);
+  margin: var(--phi-distance-j);
   font-size: 24px;
   cursor: pointer;
   text-align: center;
@@ -175,7 +210,6 @@ h2 {
   background-color: var(--time-input-color);
   border: none;
   border-radius: 15px;
-  box-shadow: 0 8px var( --button-shadow-color);
 }
 
 @keyframes blinkYellow {

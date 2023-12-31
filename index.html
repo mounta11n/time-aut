@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer for Kids</title>
+<title>Timer (not only) for Kids</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,14 +19,15 @@
       <div id="overlay"></div>
     </div>
     <div id="trexContainer"></div>
-    <input class="time-input" type="number" id="timeInput" min="5" max="1440" placeholder="Zeit in Minuten">
+    <input class="time-slider" type="range" id="timeSlider" min="1" max="60" value="1">
+    <label for="timeSlider" id="sliderLabel"></label>
   </div>
   <div>
-    <button class="button button-style" onclick="startTimer()">&#x23F5</button>
-    <button class="button" onclick="stopTimer()"> Stop </button>
+    <button class="button" id="startButton" onclick="startTimer()">&#x23F5</button>
+    <button class="button-stop" id="stopButton" onclick="stopTimer()"> Stop </button>
   </div>
 <!--  -->
-  <footer>
+  <footer id="footer">
     Made by Yazan Agha-Schrader
   </footer>
 <!--  -->
@@ -38,24 +39,46 @@
     const audioPing = new Audio('ping.mp3');
     const audioMelody = new Audio('notification.mp3');
   //
-    function playPing() {
-      audioPing.play();
-    }
+    const timeSlider = document.getElementById('timeSlider');
+    const sliderLabel = document.getElementById('sliderLabel');
+    timeSlider.addEventListener('input', function() {
+      sliderLabel.textContent = `${this.value} Minuten`;
+    });
+  //
+    const yellowTransition = totalTime * 0.62;
+    const redTransition = totalTime * 0.85;
+      function playPing() {
+        audioPing.play();
+      }
   //
     function playMelody() {
       audioMelody.play();
     }
   //
     function validateInput() {
-      const minutes = parseInt(document.getElementById('timeInput').value);
-      if (isNaN(minutes) || minutes < 5 || minutes > 1440) {
-        alert('Bitte geben Sie eine Zahl zwischen 5 und 1440 ein.');
+      const minutes = parseInt(document.getElementById('timeSlider').value);
+      if (isNaN(minutes) || minutes < 1 || minutes > 60) {
+        alert('Please enter a number between 5 and 60.');
         return false;
       }
       return minutes;
     }
   //
+    function showButton(buttonId) {
+        document.getElementById(buttonId).style.display = 'inline-block';
+      }
+  //
+    function hideButton(buttonId) {
+      document.getElementById(buttonId).style.display = 'none';
+    }
+  //
     function startTimer(durationInSeconds) {
+      hideButton('startButton');
+      showButton('stopButton');
+      hideButton('appTitleFirst');
+      hideButton('appTitleSecond');
+      hideButton('timeSlider');
+      hideButton('footer');
       if (!durationInSeconds) {
         const minutes = validateInput();
         if (!minutes) return; // Stop the function when the input is invalid
@@ -68,42 +91,41 @@
       displayTimeLeft(totalTime);
       updateTrexCount(Math.floor(totalTime / 60)); // Update the T-Rex number
       countdown = setInterval(() => {
-        const secondsLeft = Math.round((endTime - Date.now()) / 1000);
-        if (secondsLeft < 0) {
-          clearInterval(countdown);
-          playMelody();
-          return;
-        }
-        if (secondsLeft === 85 * 60) {
-          playPing();
-          document.body.style.animation = 'blinkYellow 1s';
-        }
-        if (secondsLeft === 62 * 60) {
-          playPing();
-          document.body.style.animation = 'blinkRed 1s';
-        }
-        displayTimeLeft(secondsLeft);
-        updateTrexCount(Math.floor(secondsLeft / 60));
-      }, 1000);
-    }
-  //
-    function pauseTimer() {
-      if (!isPaused) {
+      const secondsLeft = Math.round((endTime - Date.now()) / 1000);
+      if (secondsLeft < 0) {
         clearInterval(countdown);
-      } else {
-        // start the timer again with the remaining time
-        startTimer(totalTime);
+        playMelody();
+        return;
       }
-      isPaused = !isPaused;
+      const yellowTransition = Math.round(totalTime * 0.62);
+      const redTransition = Math.round(totalTime * 0.85);
+      if (secondsLeft === yellowTransition) {
+        playPing();
+        document.body.style.animation = 'blinkYellow 1s';
+      }
+      if (secondsLeft === redTransition) {
+        playPing();
+        document.body.style.animation = 'blinkRed 1s';
+      }
+      displayTimeLeft(secondsLeft);
+      updateTrexCount(Math.floor(secondsLeft / 60));
+    }, 1000);
     }
   //
     function stopTimer() {
       clearInterval(countdown);
       document.getElementById('overlay').style.width = '0%';
+      document.getElementById('trexHead').style.left = '0';
       const timerTitle = document.getElementById('timerTitle');
       if (timerTitle) {
         timerTitle.textContent = 'Visual Timer';
       }
+      showButton('startButton');
+      hideButton('stopButton');
+      showButton('appTitleFirst');
+      showButton('appTitleSecond');
+      showButton('timeSlider');
+      showButton('footer');
     }
   //
     function displayTimeLeft(secondsLeft) {
@@ -120,10 +142,10 @@
       }
     }
   //
-  function updateTrexCount(minutes) {
+    function updateTrexCount(minutes) {
       const trexContainer = document.getElementById('trexContainer');
       trexContainer.innerHTML = ''; //Delete previous T-Rexes
-      for (let i = 0; i < minutes; i++) {
+      for (let i = -1; i < minutes; i++) {
         const trexImage = document.createElement('img');
         trexImage.src = 'trex.png';
         trexImage.alt = 'T-Rex';
@@ -131,6 +153,18 @@
         trexContainer.appendChild(trexImage);
       }
     }
+  //
+    if (secondsLeft === yellowTransition) {
+      playPing();
+      document.body.classList.add('blinkYellow');
+      setTimeout(() => document.body.classList.remove('blinkYellow'), 1000);
+    }
+    if (secondsLeft === redTransition) {
+      playPing();
+      document.body.classList.add('blinkRed');
+      setTimeout(() => document.body.classList.remove('blinkRed'), 1000);
+    }
+  //
   </script>
 </body>
 </html>
