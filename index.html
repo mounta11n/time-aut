@@ -83,6 +83,12 @@
         trexContainer.appendChild(trexImage);
       }
     }
+    updateTrexCount(timeSlider.value);
+  //
+    timeSlider.addEventListener('input', function() {
+      sliderLabel.textContent = `${this.value} minutes`;
+      updateTrexCount(this.value);
+    });
   //
     function startTimer(durationInSeconds) {
       hideButton('startButton');
