@@ -21,13 +21,10 @@
   --button-background-color-active: var(--bright-gray-color);
   --button-shadow-color-active:     var(--dark-gray-color);
 
-  --time-input-color: var(--bright-color);
-
-  --nuance-color:   #00adb5;
-
-  --selection-color: hsl(90, 100%, 75%);
-
-  --border-color: var(--dark-gray-color);
+  --time-input-color:   var(--bright-color);
+  --nuance-color:     hsl(183, 100%, 35%);
+  --selection-color:  hsl(90, 100%, 75%);
+  --border-color:       var(--dark-gray-color);
 
   --one-distance: 100vw;
   --phi-distance-a: calc(var(--one-distance)   / var(--phi));
@@ -59,29 +56,28 @@
 }
 
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: radial-gradient(
+  height:           100%;
+  margin:           0;
+  padding:          0;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-direction:   column;
+  background:       radial-gradient(
     circle at center,
     var(--gradient-color-inside),
     var(--gradient-color-outside)
     );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background-repeat:      no-repeat;
+  background-attachment:  fixed;
+  background-size:        cover;
 }
 
 body {
-  font-family: 'Comic Sans MS', Chalkboard, Arial, sans-serif;
-  text-align: center;
-  color: var(--bright-color);
-  width:var(--phi-distance-a);
-  /* Body should take full width */
+  font-family:  'Comic Sans MS', Chalkboard, Arial, sans-serif;
+  text-align:   center;
+  color:        var(--bright-color);
+  width:        var(--phi-distance-a); /* Body should take full width */
 }
 
 ::selection {
@@ -89,67 +85,70 @@ body {
   background-color: var(--selection-color);
 }
 
+h2 {
+  margin-top:       var(--phi-distance-e);
+  margin-bottom:    var(--phi-distance-e);
+}
+
 .container-top {
-  top: 0;
-  width: 100%;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center; /* zentriert die Elemente horizontal */
-  position: fixed;
+  top:              0;
+  width:            100%;
+  margin-top:       var(--phi-distance-e);
+  display:          flex;
+  flex-direction:   row;
+  justify-content:  center; /* center the elements horizontally*/
+  position:         fixed;
 }
 
 .app-title-time {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
-  text-align: center;
-  color: var(--dark-gray-color);
-  text-transform: uppercase;
+  font-family:  Arial, Helvetica, sans-serif;
+  font-size:    var(--phi-distance-f);
+  text-align:   center;
+  color:        var(--dark-gray-color);
   margin-right: var(--phi-distance-i);
+  text-transform: uppercase;
 }
 
 .app-title-aut {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
-  text-align: center;
-  color: var(--dark-gray-color);
+  font-family:  Arial, Helvetica, sans-serif;
+  font-size:    var(--phi-distance-f);
+  text-align:   center;
+  color:        var(--dark-gray-color);
+  margin-left:  var(--phi-distance-i);
   text-transform: uppercase;
-  margin-left: var(--phi-distance-i);
 }
 
 /* first letter of each block within .app-title and makes it bigger */
 .app-title-time::first-letter {
-  font-size :60px;
+  font-size: var(--phi-distance-e);
 }
 
 .app-title-aut::first-letter {
-  font-size :60px;
+  font-size: var(--phi-distance-e);
 }
 
 .container {
-  max-width: var(--phi-distance-a);
-  /* Maximum width of the container 70% of the width of the body */
-  width: var(--phi-distance-a);
-  /* Container takes full width of his parents' element to Max-Width */
-  display: flex;
+  max-width:      var(--phi-distance-a); /* Maximum width of the container 70% of the width of the body */
+  width:          var(--phi-distance-a); /* Container takes full width of his parents' element to Max-Width */
+  display:        flex;
   flex-direction: column;
-  align-items: center;
+  align-items:    center;
 }
 
 .button {
-  display: inline-block;
-  padding: var(--phi-distance-i) var(--phi-distance-f);;
-  margin:  var(--phi-distance-j);
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: var(--button-color);
+  display:          inline-block;
+  padding:          var(--phi-distance-i) var(--phi-distance-f);;
+  margin:           var(--phi-distance-j);
+  font-size:        24px;
+  cursor:           pointer;
+  text-align:       center;
+  text-decoration:  none;
+  outline:          none;
+  color:            var(--button-color);
   background-color: var( --button-background-color);
-  box-shadow: 0 8px var( --button-shadow-color);
-  border: none;
-  border-radius: 15px;
+  box-shadow:       0 8px var( --button-shadow-color);
+  border:           none;
+  border-radius:    15px;
 }
 
 .button:hover {
@@ -157,16 +156,16 @@ body {
 }
 
 .button:active {
-  color: black;
+  color:          black;
   background-color: var(--button-background-color-active);
-  box-shadow: 0 5px var(--button-shadow-color-active);
-  transform: translateY(4px);
+  box-shadow:       0 5px var(--button-shadow-color-active);
+  transform:        translateY(4px);
 }
 
 .time-input {
   display: inline-block;
   padding: var(--phi-distance-i) var(--phi-distance-f);;
-  margin:  var(--phi-distance-j);
+  margin : var(--phi-distance-j);
   font-size: 24px;
   cursor: pointer;
   text-align: center;
@@ -200,8 +199,8 @@ body {
     );
   position: relative;
   overflow: hidden;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  margin-top: var(--phi-distance-e);
+  margin-bottom: var(--phi-distance-e);
 }
 
 #trexHead {
