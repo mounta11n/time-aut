@@ -4,6 +4,7 @@
   --gradient-color-outside: #000;
   --gradient-color-inside:  #3f3f3f;
 
+  --darker-color:       #222;
   --dark-color:         #333;
   --dark-gray-color:    #666;
   --bright-gray-color:  #999;
@@ -13,18 +14,20 @@
   --secondary-color: hsl(60, 100%, 50%);
   --tertiary-color:  hsl(10, 100%, 50%);
 
-  --button-color:                   var(--dark-color);
-  --button-background-color:        var(--bright-color);
-  --button-shadow-color:            var(--bright-gray-color);
-  --button-background-color-hover:  var(--bright-color);
+  --button-color:                   var(--darker-color);
+  --button-background-color:        var(--dark-gray-color);
+  --button-shadow-color:            var(--darker-color);
+  --button-background-color-hover:  var(--bright-gray-color);
   --button-background-color-active: var(--bright-gray-color);
   --button-shadow-color-active:     var(--dark-gray-color);
+
+  --time-input-color: var(--bright-color);
 
   --nuance-color:   #00adb5;
 
   --selection-color: hsl(90, 100%, 75%);
 
-  --border-color: var(--primary-color-3);
+  --border-color: var(--dark-gray-color);
 
   --one-distance: 100vw;
   --phi-distance-a: calc(var(--one-distance)   / var(--phi));
@@ -41,6 +44,18 @@
   --phi-distance-l: calc(var(--phi-distance-k) / var(--phi));
   --phi-distance-m: calc(var(--phi-distance-l) / var(--phi));
   --phi-distance-n: calc(var(--phi-distance-m) / var(--phi));
+  --phi-distance-o: calc(var(--phi-distance-n) / var(--phi));
+  --phi-distance-p: calc(var(--phi-distance-o) / var(--phi));
+  --phi-distance-q: calc(var(--phi-distance-p) / var(--phi));
+  --phi-distance-r: calc(var(--phi-distance-q) / var(--phi));
+  --phi-distance-s: calc(var(--phi-distance-r) / var(--phi));
+  --phi-distance-t: calc(var(--phi-distance-s) / var(--phi));
+  --phi-distance-u: calc(var(--phi-distance-t) / var(--phi));
+  --phi-distance-v: calc(var(--phi-distance-u) / var(--phi));
+  --phi-distance-w: calc(var(--phi-distance-v) / var(--phi));
+  --phi-distance-x: calc(var(--phi-distance-w) / var(--phi));
+  --phi-distance-y: calc(var(--phi-distance-x) / var(--phi));
+  --phi-distance-z: calc(var(--phi-distance-y) / var(--phi));
 }
 
 html, body {
@@ -74,6 +89,43 @@ body {
   background-color: var(--selection-color);
 }
 
+.container-top {
+  top: 0;
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* zentriert die Elemente horizontal */
+  position: fixed;
+}
+
+.app-title-time {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  text-align: center;
+  color: var(--dark-gray-color);
+  text-transform: uppercase;
+  margin-right: var(--phi-distance-i);
+}
+
+.app-title-aut {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  text-align: center;
+  color: var(--dark-gray-color);
+  text-transform: uppercase;
+  margin-left: var(--phi-distance-i);
+}
+
+/* first letter of each block within .app-title and makes it bigger */
+.app-title-time::first-letter {
+  font-size :60px;
+}
+
+.app-title-aut::first-letter {
+  font-size :60px;
+}
+
 .container {
   max-width: var(--phi-distance-a);
   /* Maximum width of the container 70% of the width of the body */
@@ -95,9 +147,9 @@ body {
   outline: none;
   color: var(--button-color);
   background-color: var( --button-background-color);
+  box-shadow: 0 8px var( --button-shadow-color);
   border: none;
   border-radius: 15px;
-  box-shadow: 0 8px var( --button-shadow-color);
 }
 
 .button:hover {
@@ -111,7 +163,6 @@ body {
   transform: translateY(4px);
 }
 
-
 .time-input {
   display: inline-block;
   padding: var(--phi-distance-i) var(--phi-distance-f);;
@@ -122,25 +173,31 @@ body {
   text-decoration: none;
   outline: none;
   color: var(--button-color);
-  background-color: var( --button-background-color);
+  background-color: var(--time-input-color);
   border: none;
   border-radius: 15px;
   box-shadow: 0 8px var( --button-shadow-color);
 }
 
 @keyframes blinkYellow {
-  50% { background-color: #fdf300; }
+  50% { background-color: var(--secondary-color); }
 }
 
 @keyframes blinkRed {
-  50% { background-color: #ff1b02; }
+  50% { background-color: var(--tertiary-color); }
 }
 
 #timerBar {
   width: 100%; /* bar take full width of the container */
   height: 50px;
   border-radius: 4px;
-  background: linear-gradient(to right, #78f000 62%, #fdf300 62%, #fdf300 85%, #ff1b02 85%);
+  background: linear-gradient(
+    to right,
+    var(--primary-color)   62%,
+    var(--secondary-color) 62%,
+    var(--secondary-color) 85%,
+    var(--tertiary-color)  85%
+    );
   position: relative;
   overflow: hidden;
   margin-top: 10%;
