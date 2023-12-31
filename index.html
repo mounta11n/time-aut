@@ -5,87 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Timer für Kinder</title>
-<style>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: radial-gradient(circle at center, #3f3f3f, #000);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-body {
-  font-family: 'Comic Sans MS', Chalkboard, Arial, sans-serif;
-  text-align: center;
-  color: #fff;
-  width: 100%; /* Body should take full width */
-}
-
-.container {
-  max-width: 70%; /* Maximum width of the container 70% of the width of the body */
-  width: 100%; /* Container takes full width of his parents' element to Max-Width */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@keyframes blinkYellow {
-  50% { background-color: #fdf300; }
-}
-
-@keyframes blinkRed {
-  50% { background-color: #ff1b02; }
-}
-
-#timerBar {
-  width: 100%; /* bar take full width of the container */
-  height: 50px;
-  border-radius: 4px;
-  background: linear-gradient(to right, #78f000 62%, #fdf300 62%, #fdf300 85%, #ff1b02 85%);
-  position: relative;
-  overflow: hidden;
-  margin-top: 10%;
-  margin-bottom: 5%;
-}
-
-#trexHead {
-  height: 50px;
-  position: absolute;
-  bottom: 0; /* moves down the picture so that it is on bars*/
-  left: 0; /* Starting position at the beginning of the bar */
-  z-index: 10;
-}
-
-#trexContainer {
-  margin-bottom: 30px;
-}
-
-#overlay {
-  height: 100%;
-  width: 0%;
-  background-color: rgba(169, 169, 169, 0.9);
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: width 1s linear;
-}
-
-footer {
-  position: fixed;
-  bottom: 5%;
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-  font-size: small;
-  color: #666;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -96,13 +16,15 @@ footer {
     </div>
     <div id="trexContainer"></div>
     <input type="number" id="timeInput" min="5" max="1440" placeholder="Zeit in Minuten">
-    <button onclick="startTimer()">Start</button>
-    <button onclick="pauseTimer()">Pause</button>
-    <button onclick="stopTimer()">Stopp</button>
+  </div>
+  <div>
+    <button class="button button-style" onclick="startTimer()">&#x23F5</button>
+    <button class="button" onclick="pauseTimer()">&#x23F8</button>
+    <button class="button" onclick="stopTimer()">&#x23F9</button>
   </div>
 <!--  -->
   <footer>
-    proof of concept by Yazan Agha-Schrader
+    Made by Yazan Agha-Schrader
   </footer>
 <!--  -->
   <script>

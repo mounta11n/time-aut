@@ -1,0 +1,164 @@
+:root {
+  --phi: 1.62;
+
+  --gradient-color-outside: #000;
+  --gradient-color-inside:  #3f3f3f;
+
+  --dark-color:         #333;
+  --dark-gray-color:    #666;
+  --bright-gray-color:  #999;
+  --bright-color:       #f1f1f1;
+
+  --primary-color:   hsl(90, 100%, 50%);
+  --secondary-color: hsl(60, 100%, 50%);
+  --tertiary-color:  hsl(10, 100%, 50%);
+
+  --button-color:                   var(--dark-color);
+  --button-background-color:        var(--bright-color);
+  --button-shadow-color:            var(--bright-gray-color);
+  --button-background-color-hover:  var(--bright-color);
+  --button-background-color-active: var(--bright-gray-color);
+  --button-shadow-color-active:     var(--dark-gray-color);
+
+  --nuance-color:   #00adb5;
+
+  --selection-color: hsl(90, 100%, 75%);
+
+  --border-color: var(--primary-color-3);
+
+  --one-distance: 100vw;
+  --phi-distance-a: calc(var(--one-distance)   / var(--phi));
+  --phi-distance-b: calc(var(--phi-distance-a) / var(--phi));
+  --phi-distance-c: calc(var(--phi-distance-b) / var(--phi));
+  --phi-distance-d: calc(var(--phi-distance-c) / var(--phi));
+  --phi-distance-e: calc(var(--phi-distance-d) / var(--phi));
+  --phi-distance-f: calc(var(--phi-distance-e) / var(--phi));
+  --phi-distance-g: calc(var(--phi-distance-f) / var(--phi));
+  --phi-distance-h: calc(var(--phi-distance-g) / var(--phi));
+  --phi-distance-i: calc(var(--phi-distance-h) / var(--phi));
+  --phi-distance-j: calc(var(--phi-distance-i) / var(--phi));
+  --phi-distance-k: calc(var(--phi-distance-j) / var(--phi));
+  --phi-distance-l: calc(var(--phi-distance-k) / var(--phi));
+  --phi-distance-m: calc(var(--phi-distance-l) / var(--phi));
+  --phi-distance-n: calc(var(--phi-distance-m) / var(--phi));
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(
+    circle at center,
+    var(--gradient-color-inside),
+    var(--gradient-color-outside)
+    );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body {
+  font-family: 'Comic Sans MS', Chalkboard, Arial, sans-serif;
+  text-align: center;
+  color: var(--bright-color);
+  width:var(--phi-distance-a);
+  /* Body should take full width */
+}
+
+::selection {
+  color: #333;
+  background-color: var(--selection-color);
+}
+
+.container {
+  max-width: var(--phi-distance-a);
+  /* Maximum width of the container 70% of the width of the body */
+  width: var(--phi-distance-a);
+  /* Container takes full width of his parents' element to Max-Width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  padding: var(--phi-distance-i) var(--phi-distance-f);;
+  margin:  var(--phi-distance-j);
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: var(--button-color);
+  background-color: var( --button-background-color);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px var( --button-shadow-color);
+}
+
+.button:hover {
+  background-color: var(--button-background-color-hover);
+}
+
+.button:active {
+  color: black;
+  background-color: var(--button-background-color-active);
+  box-shadow: 0 5px var(--button-shadow-color-active);
+  transform: translateY(4px);
+}
+
+@keyframes blinkYellow {
+  50% { background-color: #fdf300; }
+}
+
+@keyframes blinkRed {
+  50% { background-color: #ff1b02; }
+}
+
+#timerBar {
+  width: 100%; /* bar take full width of the container */
+  height: 50px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #78f000 62%, #fdf300 62%, #fdf300 85%, #ff1b02 85%);
+  position: relative;
+  overflow: hidden;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+#trexHead {
+  height: 50px;
+  position: absolute;
+  bottom: 0; /* moves down the picture so that it is on bars*/
+  left: 0; /* Starting position at the beginning of the bar */
+  z-index: 10;
+}
+
+#trexContainer {
+  margin-bottom: 30px;
+}
+
+#overlay {
+  height: 100%;
+  width: 0%;
+  background-color: rgba(169, 169, 169, 0.9);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: width 1s linear;
+}
+
+footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  text-align: center;
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  margin-top: 50px;
+  color: var(--dark-gray-color);
+}
