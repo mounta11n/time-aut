@@ -1,0 +1,31 @@
+{
+  "name": "time-aut",
+  "version": "1.0.0",
+  "description": "the visual timer that makes time tangible",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mounta11n/time-aut.git"
+  },
+  "keywords": [
+    "timer",
+    "visual",
+    "autism",
+    "adhd",
+    "child",
+    "children"
+  ],
+  "author": "Yazan Agha-Schrader",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mounta11n/time-aut/issues"
+  },
+  "homepage": "https://github.com/mounta11n/time-aut#readme",
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}

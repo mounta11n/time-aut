@@ -95,7 +95,7 @@ body.blinkRed {
 
 h2 {
   margin-top:       var(--phi-distance-e);
-  margin-bottom:    var(--phi-distance-e);
+  margin-bottom:    var(--phi-distance-g);
 }
 
 .container-top {
@@ -233,7 +233,7 @@ h2 {
     );
   position: relative;
   overflow: hidden;
-  margin-top: var(--phi-distance-e);
+  margin-top: var(--phi-distance-g);
   margin-bottom: var(--phi-distance-e);
 }
 
